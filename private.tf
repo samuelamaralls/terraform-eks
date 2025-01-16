@@ -1,5 +1,5 @@
 resource "aws_subnet" "example_eks_private_1a" {
-  vpc_id            = aws_vpc.example_vpc.id
+  vpc_id            = aws_vpc.example_vpc_eks.id
   cidr_block        = cidrsubnet(var.cidr_block, 4, 3)
   availability_zone = "${data.aws_region.current.name}a"
 
@@ -13,7 +13,7 @@ resource "aws_subnet" "example_eks_private_1a" {
 }
 
 resource "aws_subnet" "example_eks_private_1b" {
-  vpc_id            = aws_vpc.example_vpc.id
+  vpc_id            = aws_vpc.example_vpc_eks.id
   cidr_block        = cidrsubnet(var.cidr_block, 4, 4)
   availability_zone = "${data.aws_region.current.name}b"
 
@@ -27,7 +27,7 @@ resource "aws_subnet" "example_eks_private_1b" {
 }
 
 resource "aws_subnet" "example_eks_private" {
-  vpc_id            = aws_vpc.example_vpc.id
+  vpc_id            = aws_vpc.example_vpc_eks.id
   cidr_block        = cidrsubnet(var.cidr_block, 4, 5)
   availability_zone = "${data.aws_region.current.name}c"
 
@@ -38,4 +38,19 @@ resource "aws_subnet" "example_eks_private" {
       "kubernetes.io/role/internal-elb" = 1
     }
   )
+}
+
+resource "aws_route_table_association" "eks_rtb_assoc_priv_1a" {
+  subnet_id      = aws_subnet.example_eks_private_1a.id
+  route_table_id = aws_route_table.eks_private_rtb-1a.id
+}
+
+resource "aws_route_table_association" "eks_rtb_assoc_priv_1b" {
+  subnet_id      = aws_subnet.example_eks_private_1b.id
+  route_table_id = aws_route_table.eks_private_rtb-1b.id
+}
+
+resource "aws_route_table_association" "eks_rtb_assoc_priv_1c" {
+  subnet_id      = aws_subnet.example_eks_private.id
+  route_table_id = aws_route_table.eks_private_rtb-1c.id
 }
