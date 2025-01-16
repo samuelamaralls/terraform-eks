@@ -7,7 +7,7 @@ resource "aws_subnet" "example_eks_public_1a" {
   tags = merge(
     local.tags,
     {
-      Name                     = "Example - subnet -1a",
+      Name                     = "${var.project_name} - pub-subnet -1a",
       "kubernetes.io/role/elb" = 1
     }
   )
@@ -22,7 +22,7 @@ resource "aws_subnet" "example_eks_public_1b" {
   tags = merge(
     local.tags,
     {
-      Name                     = "Example - subnet -1b",
+      Name                     = "${var.project_name} - pub-subnet -1b",
       "kubernetes.io/role/elb" = 1
     }
   )
@@ -37,7 +37,7 @@ resource "aws_subnet" "example_eks_public_1c" {
   tags = merge(
     local.tags,
     {
-      Name                     = "Example - subnet -1c",
+      Name                     = "${var.project_name} - pub-subnet -1c",
       "kubernetes.io/role/elb" = 1
     }
   )
