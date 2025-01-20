@@ -21,3 +21,7 @@ output "subnet_priv_1b" {
 output "subnet_priv_1c" {
   value = aws_subnet.example_eks_private_1c.id
 }
+
+output "vpc_id" {
+  value = aws_vpc.example_vpc_eks.id
+}

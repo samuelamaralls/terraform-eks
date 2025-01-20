@@ -12,3 +12,7 @@ variable "tags" {
   type        = map(any)
   description = "Tags to be added to AWS resources"
 }
+
+variable "vpc_id" {
+  type = string
+}
